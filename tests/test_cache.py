@@ -1,8 +1,8 @@
 import asyncio
 from typing import Any, Callable
-from perscache.arg_hasher import MkArgHasherType
-from perscache.cache import cached, cached_async
-from perscache.storage import SqliteStorage, Storage, AsyncStorage
+from miniperscache.arg_hasher import MkArgHasherType
+from miniperscache.cache import cached, cached_async
+from miniperscache.storage import SqliteStorage, Storage, AsyncStorage
 import pytest
 
 
@@ -84,7 +84,7 @@ def test_async_error():
 
 @pytest.mark.asyncio
 async def test_async_is_async():
-    from perscache.storage import AsyncFileStorage
+    from miniperscache.storage import AsyncFileStorage
 
     storage = AsyncFileStorage()
     await storage.delete_with_tag("test_async_is_async")

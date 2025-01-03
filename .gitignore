@@ -171,5 +171,5 @@ cython_debug/
 .pypirc
 
 .pytest_cache/
-.perscache/
+.miniperscache/
 .ruff_cache/

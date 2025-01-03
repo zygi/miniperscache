@@ -38,7 +38,7 @@ wheels = [
 ]
 
 [[package]]
-name = "perscache"
+name = "miniperscache"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

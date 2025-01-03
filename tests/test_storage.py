@@ -1,10 +1,10 @@
 import pytest
-from perscache.storage import FileStorage, SqliteStorage, AsyncFileStorage
+from miniperscache.storage import FileStorage, SqliteStorage, AsyncFileStorage
 
 
 @pytest.fixture
 def temp_path(tmp_path):
-    return tmp_path / "perscache_test"
+    return tmp_path / "miniperscache_test"
 
 
 def test_file_storage(temp_path):

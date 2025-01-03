@@ -1,4 +1,4 @@
-from perscache.arg_hasher import DefaultArgHasher
+from miniperscache.arg_hasher import DefaultArgHasher
 
 
 def test_default_skip_names():

@@ -10,7 +10,7 @@ logger = package_logging.getLogger("storage")
 
 def _get_default_path(provided: str | pathlib.Path | None) -> pathlib.Path:
     if provided is None:
-        return pathlib.Path.cwd() / ".perscache"
+        return pathlib.Path.cwd() / ".miniperscache"
     path = pathlib.Path(provided)
     path.mkdir(parents=True, exist_ok=True)
     return path
@@ -30,7 +30,7 @@ class Storage(ABC):
 class FileStorage(Storage):
     def __init__(self, path: str | pathlib.Path | None = None):
         self.path = _get_default_path(path)
-        logger.info("Perscache file storage initialized at %s", self.path)
+        logger.info("miniperscache file storage initialized at %s", self.path)
 
     def _mk_file_name(self, tag: str, key: bytes) -> pathlib.Path:
         key_base64 = base64.urlsafe_b64encode(key).decode("utf-8")
@@ -59,12 +59,12 @@ class FileStorage(Storage):
 class SqliteStorage(Storage):
     def __init__(self, db_path: str | pathlib.Path | None = None):
         if db_path is None:
-            db_path = _get_default_path(None) / "perscache.db"
+            db_path = _get_default_path(None) / "miniperscache.db"
         if isinstance(db_path, str):
             db_path = pathlib.Path(db_path)
         # Create parent directory if it doesn't exist
         db_path.parent.mkdir(parents=True, exist_ok=True)
-        logger.info("Perscache sqlite storage initialized at %s", db_path)
+        logger.info("miniperscache sqlite storage initialized at %s", db_path)
 
         self.conn = sqlite3.connect(db_path)
         self.conn.execute(

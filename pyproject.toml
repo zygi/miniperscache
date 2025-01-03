@@ -1,7 +1,7 @@
 [project]
-name = "perscache"
+name = "miniperscache"
 version = "0.1.0"
-description = "Perscache is a small Python library for persistent caching of function results."
+description = "miniperscache is a small Python library for persistent caching of function results."
 readme = "README.md"
 authors = [
     { name = "Zygimantas Straznickas", email = "hi@zygi.me" }

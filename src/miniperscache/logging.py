@@ -1,7 +1,7 @@
 import logging
 
 
-_logger = logging.getLogger("perscache")
+_logger = logging.getLogger("miniperscache")
 
 
 def getLogger(child: str | None = None) -> logging.Logger:

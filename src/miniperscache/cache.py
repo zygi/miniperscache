@@ -2,9 +2,9 @@ import pickle
 from typing import Any, Coroutine
 from typing_extensions import Callable, TypeVar, ParamSpec
 
-from perscache.arg_hasher import DefaultArgHasher, MkArgHasherType
-from perscache.serializer import PickleSerializer, Serializer
-from perscache.storage import AsyncStorage, Storage, SqliteStorage
+from miniperscache.arg_hasher import DefaultArgHasher, MkArgHasherType
+from miniperscache.serializer import PickleSerializer, Serializer
+from miniperscache.storage import AsyncStorage, Storage, SqliteStorage
 from . import logging as package_logging
 import inspect
 
@@ -20,7 +20,7 @@ _TAG_REGISTRY = {}
 def _check_tag_uniqueness(tag: str) -> None:
     if tag in _TAG_REGISTRY:
         raise ValueError(
-            f"Perscache tag {tag} already registered for another function. Please use a unique tag for each function. If you are trying to cache a function that is called multiple times, you can use the `force_tag_nonunique` flag to bypass this check."
+            f"miniperscache tag {tag} already registered for another function. Please use a unique tag for each function. If you are trying to cache a function that is called multiple times, you can use the `force_tag_nonunique` flag to bypass this check."
         )
     _TAG_REGISTRY[tag] = True
 
