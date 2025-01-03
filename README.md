@@ -1,4 +1,7 @@
-A small python package for persistent caching of function results. Supports both sync and async functions.
+A small python package for persistent caching of function results. Main features:
+- Supports both sync and async functions.
+- Properly typed, so your decorated functions will have the same type hints as the original function.
+- Customizable serializers and storage backends.
 
 ## Customization
 ### Serializers
