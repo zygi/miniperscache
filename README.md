@@ -59,7 +59,7 @@ async def model_call(client: ClientObject, prompt: str) -> float:
     return res.content
 ```
 
-### Or, you can provide your own arg hasher
+Or, you can provide your own arg hasher
 ```python
 from perscache import cached_async, default_raw_arg_hasher
 
