@@ -1,3 +1,5 @@
+![pypi](https://img.shields.io/pypi/v/miniperscache)
+
 A small python package for persistent caching of function results. Main features:
 - Supports both sync and async functions.
 - Properly typed, so your decorated functions will have the same type hints as the original function.
