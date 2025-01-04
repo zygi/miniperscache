@@ -20,7 +20,7 @@ _TAG_REGISTRY = {}
 def _check_tag_uniqueness(tag: str) -> None:
     if tag in _TAG_REGISTRY:
         raise ValueError(
-            f"miniperscache tag {tag} already registered for another function. Please use a unique tag for each function. If you are trying to cache a function that is called multiple times, you can use the `force_tag_nonunique` flag to bypass this check."
+            f"miniperscache tag '{tag}' already registered for another function. Please use a unique tag for each function. If you are trying to cache a function that is called multiple times, you can use the `force_tag_nonunique` flag to bypass this check."
         )
     _TAG_REGISTRY[tag] = True
 
