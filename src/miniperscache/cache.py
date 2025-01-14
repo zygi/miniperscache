@@ -65,7 +65,7 @@ def mk_cached(
             return value_serializer.deserialize(value)
         _logger.debug("Cache miss for %s with key %s", tag, key)
         result = func(*args, **kwargs)
-        storage.set(tag, key, pickle.dumps(result))
+        storage.set(tag, key, value_serializer.serialize(result))
         return result
 
     return wrapper
@@ -148,7 +148,7 @@ def mk_cached_async(
             _logger.debug("Cache miss for %s with key %s", tag, key)
             result = await func(*args, **kwargs)
 
-            await storage.set(tag, key, pickle.dumps(result))
+            await storage.set(tag, key, value_serializer.serialize(result))
             return result
     else:
 
@@ -160,7 +160,7 @@ def mk_cached_async(
                 return value_serializer.deserialize(value)
             _logger.debug("Cache miss for %s with key %s", tag, key)
             result = await func(*args, **kwargs)
-            storage.set(tag, key, pickle.dumps(result))
+            storage.set(tag, key, value_serializer.serialize(result))
             return result
 
     return wrapper
