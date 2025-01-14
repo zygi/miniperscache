@@ -1,6 +1,6 @@
 [project]
 name = "miniperscache"
-version = "0.1.1"
+version = "0.1.2"
 description = "miniperscache is a small Python library for persistent caching of function results."
 readme = "README.md"
 authors = [
