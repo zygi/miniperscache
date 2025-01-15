@@ -78,7 +78,8 @@ SqliteStorage().delete_tag("expensive_calculation")
 ## Customization
 ### Serializers
 Currently:
-- PickleSerializer (default)
+- DillSerializer (default)
+- PickleSerializer
 - JsonSerializer
 
 ### Storage

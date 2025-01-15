@@ -2,7 +2,7 @@ import inspect
 from typing import Any, Callable, Coroutine, ParamSpec, Sequence, TypeVar
 
 from miniperscache.cache import _check_tag_uniqueness
-from miniperscache.serializer import PickleSerializer, Serializer
+from miniperscache.serializer import DillSerializer, Serializer
 from miniperscache.storage import AsyncStorage, Storage
 from miniperscache.arg_hasher import DefaultArgHasher, MkArgHasherType
 from miniperscache.storage import SqliteStorage
@@ -45,7 +45,7 @@ def mk_batch_cached(
         arg_hasher = arg_hasher(func)
 
     if value_serializer is None:
-        value_serializer = PickleSerializer()
+        value_serializer = DillSerializer()
 
     sig = inspect.signature(func)
 
@@ -160,7 +160,7 @@ def mk_async_batch_cached(
         storage = SqliteStorage()
     storage_async = isinstance(storage, AsyncStorage)
     if value_serializer is None:
-        value_serializer = PickleSerializer()
+        value_serializer = DillSerializer()
     if batch_argument_names is None:
         batch_argument_names = []
     if arg_hasher is None:

@@ -1,9 +1,8 @@
-import pickle
 from typing import Any, Coroutine
 from typing_extensions import Callable, TypeVar, ParamSpec
 
 from miniperscache.arg_hasher import DefaultArgHasher, MkArgHasherType
-from miniperscache.serializer import PickleSerializer, Serializer
+from miniperscache.serializer import DillSerializer, Serializer
 from miniperscache.storage import AsyncStorage, Storage, SqliteStorage
 from . import logging as package_logging
 import inspect
@@ -55,7 +54,7 @@ def mk_cached(
         arg_hasher = arg_hasher(func)
 
     if value_serializer is None:
-        value_serializer = PickleSerializer()
+        value_serializer = DillSerializer()
 
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         key = arg_hasher(*args, **kwargs)
@@ -86,7 +85,7 @@ def cached(
         tag: A unique string identifier for this cached function
         arg_hasher: Optional function to generate cache keys from function arguments.
                    If None, uses DefaultArgHasher()
-        value_serializer: Optional serializer for cache values. If None, uses PickleSerializer
+        value_serializer: Optional serializer for cache values. If None, uses DillSerializer
         storage: Optional storage backend. If None, uses SqliteStorage
         force_tag_nonunique: If True, allows reusing the same tag for multiple functions
 
@@ -135,7 +134,7 @@ def mk_cached_async(
         arg_hasher = arg_hasher(func)
 
     if value_serializer is None:
-        value_serializer = PickleSerializer()
+        value_serializer = DillSerializer()
 
     if isinstance(storage, AsyncStorage):
 
@@ -181,7 +180,7 @@ def cached_async(
     Args:
         tag: A unique tag for this cached function. Used to clear all cached values for this function.
         arg_hasher: Optional function to hash the arguments into a key. If None, uses DefaultArgHasher().
-        value_serializer: Optional serializer for the return value. If None, uses PickleSerializer().
+        value_serializer: Optional serializer for the return value. If None, uses DillSerializer().
         storage: Optional storage backend. If None, uses SqliteStorage().
         force_tag_nonunique: If True, allows multiple functions to share the same tag.
     """

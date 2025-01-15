@@ -1,5 +1,6 @@
 import json
-import pickle
+import cloudpickle
+import dill
 from typing import Any, Protocol
 
 from . import logging as package_logging
@@ -15,17 +16,25 @@ class Serializer(Protocol):
 
 class PickleSerializer(Serializer):
     """
-    Serializer that uses Python's built-in pickle library.
+    Serializer that uses Cloudpickle.
 
-    WARNING: The pickle module is not secure. Only unpickle data you trust.
+    WARNING: Cloudpickle (as well as the built-in pickle module) is not secure. Only unpickle data you trust.
     It is possible to construct malicious pickle data which will execute arbitrary code during unpickling.
     """
 
     def serialize(self, value: Any) -> bytes:
-        return pickle.dumps(value)
+        return cloudpickle.dumps(value)
 
     def deserialize(self, value: bytes) -> Any:
-        return pickle.loads(value)
+        return cloudpickle.loads(value)
+
+
+class DillSerializer(Serializer):
+    def serialize(self, value: Any) -> bytes:
+        return dill.dumps(value)
+
+    def deserialize(self, value: bytes) -> Any:
+        return dill.loads(value)
 
 
 class JsonSerializer(Serializer):
